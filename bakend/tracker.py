@@ -3,7 +3,7 @@ tracker.py — Railway pe deploy karo
 Click tracking server with PostgreSQL support
 """
 
-from flask import Flask, redirect, request
+from flask import Flask, redirect, request, jsonify
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -106,6 +106,66 @@ def stats():
 
     except Exception as e:
         return f"❌ Error: {e}"
+    
+@app.route("/stats-json")
+def stats_json():
+    try:
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute("SELECT COUNT(*) AS total FROM clicks")
+        total = cur.fetchone()["total"]
+        cur.execute("""
+            SELECT email, name, round, ip,
+                   clicked_at::text as clicked_at
+            FROM clicks ORDER BY clicked_at DESC LIMIT 200
+        """)
+        clicks = [dict(r) for r in cur.fetchall()]
+        cur.execute("SELECT round, COUNT(*) as cnt FROM clicks GROUP BY round")
+        by_round = [dict(r) for r in cur.fetchall()]
+        cur.close()
+        conn.close()
+        return jsonify({"total": total, "clicks": clicks, "by_round": by_round})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/upload-leads", methods=["POST"])
+def upload_leads():
+    try:
+        file = request.files["file"]
+        file.save("leads.csv")
+        return jsonify({"status": "ok", "message": "leads.csv uploaded"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route("/upload-leads", methods=["POST"])
+def upload_leads():
+    try:
+        file = request.files["file"]
+        file.save("leads.csv")
+        return jsonify({"status": "ok", "message": "leads.csv uploaded"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route("/run-emails", methods=["POST"])
+def run_emails():
+    import threading
+    from email_sender import run
+    t = threading.Thread(target=run)
+    t.daemon = True
+    t.start()
+    return jsonify({"status": "started", "message": "Email sending started in background"})
+
+import threading
+_stop_flag = threading.Event()
+
+@app.route("/stop-emails", methods=["POST"])
+def stop_emails():
+    _stop_flag.set()
+    return jsonify({"status": "stopped"})        
+    
+    
+
+
 
 
 # ─────────────────────────────────────────
