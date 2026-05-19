@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import Papa from "papaparse";
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 const TABS = ["Overview", "Leads", "Clicks", "Settings"];
 
 
@@ -304,7 +304,7 @@ function LeadsTable({ leads, onToggleReply, onClearLeads }) {
                       {row.round1_date || "—"}
                     </td>
                     <td style={{ padding: "12px 16px" }}>
-                      <button onClick={() => onToggleReply(i)} style={{
+                      <button onClick={() => onToggleReply(row.email, isReplied)} style={{
                         background: isReplied ? "#e05c5c22" : "#00e5a011",
                         border: `1px solid ${isReplied ? "#e05c5c44" : "#00e5a033"}`,
                         color: isReplied ? "#e05c5c" : "#00e5a0",
