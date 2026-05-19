@@ -275,7 +275,7 @@ def send_email(server, to_email, name, subject, body):
 # ─────────────────────────────────────────
 # MAIN RUNNER
 # ─────────────────────────────────────────
-def run():
+def run(stop_flag=None):
     status = load_status()
     server = connect_server()
     today  = datetime.today().date()
@@ -309,10 +309,10 @@ def run():
             if ok:
                 status.at[i, "round1_sent"] = True
                 status.at[i, "round1_date"] = str(today)
-                save_status(status)
-                sent_count += 1
                 delay = random.randint(40, 90)
                 print(f"  ⏳ Waiting {delay}s...\n")
+                if stop_flag and stop_flag.is_set():
+                    break
                 time.sleep(delay)
             continue
 
@@ -335,8 +335,10 @@ def run():
                     save_status(status)
                     sent_count += 1
                     delay = random.randint(40, 90)
-                    print(f"  ⏳ Waiting {delay}s...\n")
-                    time.sleep(delay)
+                print(f"  ⏳ Waiting {delay}s...\n")
+                if stop_flag and stop_flag.is_set():
+                    break
+                time.sleep(delay)
             continue
 
         # ── Follow-up 2 (6 din baad Round 1 se) ──
@@ -357,8 +359,10 @@ def run():
                     save_status(status)
                     sent_count += 1
                     delay = random.randint(40, 90)
-                    print(f"  ⏳ Waiting {delay}s...\n")
-                    time.sleep(delay)
+                print(f"  ⏳ Waiting {delay}s...\n")
+                if stop_flag and stop_flag.is_set():
+                    break
+                time.sleep(delay)
 
     try:
         server.quit()
