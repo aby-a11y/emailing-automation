@@ -1,22 +1,19 @@
 import smtplib
 import random
 import time
-import pandas as pd
+import psycopg2
+from psycopg2.extras import RealDictCursor
 from email.mime.text import MIMEText
-from datetime import datetime, timedelta
+from datetime import datetime
 import os
 import urllib.parse
 
 # ─────────────────────────────────────────
-# CONFIG
+# CONFIG — Railway env variables se aata hai
 # ─────────────────────────────────────────
-EMAIL    = "deya5579@gmail.com"
-PASSWORD = "bwto rsis pzaw osnp"
-
-TRACKING_BASE_URL = "https://your-app.up.railway.app"  # ← Railway URL daalo
-
-LEADS_FILE   = "leads.csv"      # Columns: Name, Email
-STATUS_FILE  = "status.csv"     # Auto-manage hoga — mat chhona
+EMAIL             = os.environ.get("SENDER_EMAIL",      "deya5579@gmail.com")
+PASSWORD          = os.environ.get("SENDER_PASSWORD",   "bwto rsis pzaw osnp")
+TRACKING_BASE_URL = os.environ.get("TRACKING_BASE_URL", "https://your-app.up.railway.app")
 
 # ─────────────────────────────────────────
 # SUBJECTS
@@ -215,40 +212,60 @@ Abhishek
 ]
 
 # ─────────────────────────────────────────
-# STATUS FILE SETUP
+# DB FUNCTIONS — CSV bilkul nahi, sirf PostgreSQL
 # ─────────────────────────────────────────
-def load_status():
-    if os.path.exists(STATUS_FILE):
-        return pd.read_csv(STATUS_FILE)
-    else:
-        df = pd.read_csv(LEADS_FILE)
-        status = pd.DataFrame({
-            "Name"           : df["Name"],
-            "Email"          : df["Email"],
-            "replied"        : False,       # Manual: TRUE likhna jinhone reply kiya
-            "round1_sent"    : False,
-            "round1_date"    : "",
-            "followup1_sent" : False,
-            "followup1_date" : "",
-            "followup2_sent" : False,
-            "followup2_date" : "",
-        })
-        status.to_csv(STATUS_FILE, index=False)
-        print(f"✅ {STATUS_FILE} create ho gaya — jinhone reply kiya unka 'replied' column TRUE kar do.")
-        return status
+def get_db():
+    return psycopg2.connect(os.environ["DATABASE_URL"], cursor_factory=RealDictCursor)
 
-def save_status(df):
-    df.to_csv(STATUS_FILE, index=False)
+def load_status():
+    """DB se saare leads fetch karo"""
+    conn = get_db()
+    cur  = conn.cursor()
+    cur.execute("""
+        SELECT name, email, replied,
+               round1_sent, round1_date,
+               followup1_sent, followup1_date,
+               followup2_sent, followup2_date
+        FROM leads ORDER BY id ASC
+    """)
+    rows = [dict(r) for r in cur.fetchall()]
+    cur.close()
+    conn.close()
+    print(f"📋 DB se {len(rows)} leads load hue")
+    return rows
+
+def save_lead_round1(email, date_str):
+    conn = get_db()
+    cur  = conn.cursor()
+    cur.execute(
+        "UPDATE leads SET round1_sent='TRUE', round1_date=%s, updated_at=NOW() WHERE email=%s",
+        (date_str, email)
+    )
+    conn.commit(); cur.close(); conn.close()
+
+def save_lead_followup1(email, date_str):
+    conn = get_db()
+    cur  = conn.cursor()
+    cur.execute(
+        "UPDATE leads SET followup1_sent='TRUE', followup1_date=%s, updated_at=NOW() WHERE email=%s",
+        (date_str, email)
+    )
+    conn.commit(); cur.close(); conn.close()
+
+def save_lead_followup2(email, date_str):
+    conn = get_db()
+    cur  = conn.cursor()
+    cur.execute(
+        "UPDATE leads SET followup2_sent='TRUE', followup2_date=%s, updated_at=NOW() WHERE email=%s",
+        (date_str, email)
+    )
+    conn.commit(); cur.close(); conn.close()
 
 # ─────────────────────────────────────────
 # TRACKING URL
 # ─────────────────────────────────────────
 def make_tracked_url(email, name, round_name):
-    params = urllib.parse.urlencode({
-        "email": email,
-        "name" : name,
-        "round": round_name
-    })
+    params = urllib.parse.urlencode({"email": email, "name": name, "round": round_name})
     return f"{TRACKING_BASE_URL}/track?{params}"
 
 # ─────────────────────────────────────────
@@ -260,7 +277,7 @@ def connect_server():
     return server
 
 def send_email(server, to_email, name, subject, body):
-    msg          = MIMEText(body)
+    msg            = MIMEText(body)
     msg["Subject"] = subject
     msg["From"]    = EMAIL
     msg["To"]      = to_email
@@ -276,103 +293,103 @@ def send_email(server, to_email, name, subject, body):
 # MAIN RUNNER
 # ─────────────────────────────────────────
 def run(stop_flag=None):
-    status = load_status()
-    server = connect_server()
-    today  = datetime.today().date()
+    leads      = load_status()
+    today      = datetime.today().date()
     sent_count = 0
 
-    for i, row in status.iterrows():
+    if not leads:
+        print("⚠️  DB mein koi leads nahi hain. Pehle dashboard se CSV upload karo.")
+        return
 
-        # Jinhone reply kiya — skip karo
-        if str(row["replied"]).strip().upper() == "TRUE":
-            print(f"  ⏭  Skipped (replied): {row['Email']}")
+    server = connect_server()
+
+    for row in leads:
+
+        if stop_flag and stop_flag.is_set():
+            print("⏹ Stop flag — automation band")
+            break
+
+        name  = row.get("name",  "") or ""
+        email = row.get("email", "") or ""
+
+        if not email:
             continue
 
-        # Reconnect har 15 emails pe
+        # Replied wale skip
+        if str(row["replied"]).strip().upper() == "TRUE":
+            print(f"  ⏭  Skipped (replied): {email}")
+            continue
+
+        # Reconnect har 15 pe
         if sent_count > 0 and sent_count % 15 == 0:
-            try:
-                server.quit()
-            except:
-                pass
+            try: server.quit()
+            except: pass
             server = connect_server()
             print("🔄 Server reconnected")
 
-        tracked_link = make_tracked_url(row["Email"], row["Name"], "round1")
-
         # ── Round 1 ──────────────────────────────
-        if not str(row["round1_sent"]).strip().upper() == "TRUE":
+        if str(row["round1_sent"]).strip().upper() != "TRUE":
+            tracked_link = make_tracked_url(email, name, "round1")
             subject = random.choice(subjects_round1)
-            body    = random.choice(templates_round1).format(
-                        name=row["Name"], tracked_link=tracked_link)
-            print(f"[Round 1] {row['Name']} <{row['Email']}>")
-            ok = send_email(server, row["Email"], row["Name"], subject, body)
+            body    = random.choice(templates_round1).format(name=name, tracked_link=tracked_link)
+            print(f"[Round 1] {name} <{email}>")
+            ok = send_email(server, email, name, subject, body)
             if ok:
-                status.at[i, "round1_sent"] = True
-                status.at[i, "round1_date"] = str(today)
-                save_status(status)   # ✅ FIX: progress save karo
-                sent_count += 1       # ✅ FIX: count increment karo
+                save_lead_round1(email, str(today))
+                sent_count += 1
                 delay = random.randint(40, 90)
                 print(f"  ⏳ Waiting {delay}s...\n")
-                if stop_flag and stop_flag.is_set():
-                    break
+                if stop_flag and stop_flag.is_set(): break
                 time.sleep(delay)
             continue
 
+        r1_date = row.get("round1_date", "") or ""
+
         # ── Follow-up 1 (3 din baad) ─────────────
-        r1_date = row["round1_date"]
-        if (str(row["round1_sent"]).upper() == "TRUE"
-                and not str(row["followup1_sent"]).upper() == "TRUE"
-                and r1_date):
-            days_since = (today - datetime.strptime(str(r1_date), "%Y-%m-%d").date()).days
+        if str(row["round1_sent"]).upper() == "TRUE" and str(row["followup1_sent"]).upper() != "TRUE" and r1_date:
+            try:
+                days_since = (today - datetime.strptime(str(r1_date), "%Y-%m-%d").date()).days
+            except:
+                days_since = 0
             if days_since >= 3:
-                tracked_link = make_tracked_url(row["Email"], row["Name"], "followup1")
+                tracked_link = make_tracked_url(email, name, "followup1")
                 subject = random.choice(subjects_followup1)
-                body    = random.choice(templates_followup1).format(
-                            name=row["Name"], tracked_link=tracked_link)
-                print(f"[Follow-up 1] {row['Name']} <{row['Email']}>")
-                ok = send_email(server, row["Email"], row["Name"], subject, body)
-                delay = random.randint(40, 90)   # ✅ FIX: always define delay
+                body    = random.choice(templates_followup1).format(name=name, tracked_link=tracked_link)
+                print(f"[Follow-up 1] {name} <{email}>")
+                ok    = send_email(server, email, name, subject, body)
+                delay = random.randint(40, 90)
                 if ok:
-                    status.at[i, "followup1_sent"] = True
-                    status.at[i, "followup1_date"] = str(today)
-                    save_status(status)
+                    save_lead_followup1(email, str(today))
                     sent_count += 1
                 print(f"  ⏳ Waiting {delay}s...\n")
-                if stop_flag and stop_flag.is_set():
-                    break
+                if stop_flag and stop_flag.is_set(): break
                 time.sleep(delay)
             continue
 
         # ── Follow-up 2 (6 din baad Round 1 se) ──
-        if (str(row["followup1_sent"]).upper() == "TRUE"
-                and not str(row["followup2_sent"]).upper() == "TRUE"
-                and r1_date):
-            days_since = (today - datetime.strptime(str(r1_date), "%Y-%m-%d").date()).days
+        if str(row["followup1_sent"]).upper() == "TRUE" and str(row["followup2_sent"]).upper() != "TRUE" and r1_date:
+            try:
+                days_since = (today - datetime.strptime(str(r1_date), "%Y-%m-%d").date()).days
+            except:
+                days_since = 0
             if days_since >= 6:
-                tracked_link = make_tracked_url(row["Email"], row["Name"], "followup2")
+                tracked_link = make_tracked_url(email, name, "followup2")
                 subject = random.choice(subjects_followup2)
-                body    = random.choice(templates_followup2).format(
-                            name=row["Name"], tracked_link=tracked_link)
-                print(f"[Follow-up 2] {row['Name']} <{row['Email']}>")
-                ok = send_email(server, row["Email"], row["Name"], subject, body)
-                delay = random.randint(40, 90)   # ✅ FIX: always define delay
+                body    = random.choice(templates_followup2).format(name=name, tracked_link=tracked_link)
+                print(f"[Follow-up 2] {name} <{email}>")
+                ok    = send_email(server, email, name, subject, body)
+                delay = random.randint(40, 90)
                 if ok:
-                    status.at[i, "followup2_sent"] = True
-                    status.at[i, "followup2_date"] = str(today)
-                    save_status(status)
+                    save_lead_followup2(email, str(today))
                     sent_count += 1
                 print(f"  ⏳ Waiting {delay}s...\n")
-                if stop_flag and stop_flag.is_set():
-                    break
+                if stop_flag and stop_flag.is_set(): break
                 time.sleep(delay)
 
-    try:
-        server.quit()
-    except:
-        pass
+    try: server.quit()
+    except: pass
 
     print(f"\n✅ Done! Total emails sent this run: {sent_count}")
-    print(f"📄 Status saved in: {STATUS_FILE}")
 
 if __name__ == "__main__":
     run()
