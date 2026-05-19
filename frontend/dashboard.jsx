@@ -55,8 +55,71 @@ function StatCard({ label, value, sub, accent }) {
     </div>
   );
 }
+function AutomationControl({ backendUrl, showToast }) {
+  const [running, setRunning] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-function Overview({ leads, clicks }) {
+  useEffect(() => {
+    fetch(`${backendUrl}/automation/status`)
+      .then(r => r.json())
+      .then(d => setRunning(d.running))
+      .catch(() => {});
+  }, [backendUrl]);
+
+  const start = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${backendUrl}/run-emails`, { method: "POST" });
+      const d = await res.json();
+      if (d.status === "already_running") showToast("Already running!", "#f5a623");
+      else { setRunning(true); showToast("✓ Automation started", "#00e5a0"); }
+    } catch { showToast("Failed to start", "#e05c5c"); }
+    setLoading(false);
+  };
+
+  const stop = async () => {
+    setLoading(true);
+    try {
+      await fetch(`${backendUrl}/stop-emails`, { method: "POST" });
+      setRunning(false);
+      showToast("⏹ Automation stopped", "#f5a623");
+    } catch { showToast("Failed to stop", "#e05c5c"); }
+    setLoading(false);
+  };
+
+  return (
+    <div style={{
+      background: "#13161d", border: `1px solid ${running ? "#00e5a033" : "#23272f"}`,
+      borderRadius: 12, padding: "20px 24px",
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      flexWrap: "wrap", gap: 16,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{
+          width: 10, height: 10, borderRadius: "50%",
+          background: running ? "#00e5a0" : "#444",
+          boxShadow: running ? "0 0 8px #00e5a0" : "none",
+        }} />
+        <div>
+          <div style={{ color: "#ddd", fontSize: 14, fontWeight: 600 }}>
+            Email Automation — <span style={{ color: running ? "#00e5a0" : "#666" }}>{running ? "Running" : "Stopped"}</span>
+          </div>
+          <div style={{ color: "#444", fontSize: 12, marginTop: 2 }}>
+            {running ? "Sending emails in background..." : "Click Start to begin email sequence"}
+          </div>
+        </div>
+      </div>
+      <div>
+        {!running
+          ? <button onClick={start} disabled={loading} style={{ background: "#00e5a0", border: "none", color: "#000", borderRadius: 8, padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 13, fontFamily: "inherit" }}>▶ Start Automation</button>
+          : <button onClick={stop} disabled={loading} style={{ background: "#e05c5c22", border: "1px solid #e05c5c44", color: "#e05c5c", borderRadius: 8, padding: "10px 24px", cursor: "pointer", fontWeight: 700, fontSize: 13, fontFamily: "inherit" }}>⏹ Stop Automation</button>
+        }
+      </div>
+    </div>
+  );
+}
+
+function Overview({ leads, clicks, backendUrl, showToast }) {
   const replied = leads.filter(l => String(l.replied).toUpperCase() === "TRUE").length;
   const r1 = leads.filter(l => String(l.round1_sent).toUpperCase() === "TRUE").length;
   const f1 = leads.filter(l => String(l.followup1_sent).toUpperCase() === "TRUE").length;
@@ -76,6 +139,8 @@ function Overview({ leads, clicks }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+      {/* Automation Control */}
+      <AutomationControl backendUrl={backendUrl} showToast={showToast} />
       {/* Stat Cards */}
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
         <StatCard label="Total Leads" value={leads.length} sub="Uploaded via CSV" accent="#00e5a0" />
@@ -383,10 +448,15 @@ export default function App() {
   const [toast, setToast] = useState(null);
   const fileRef = useRef();
   useEffect(() => {
+  fetch(`${BACKEND_URL}/leads`)
+    .then(r => r.json())
+    .then(d => setLeads(Array.isArray(d) ? d : []))
+    .catch(() => {});
+
   fetch(`${BACKEND_URL}/clicks`)
-    .then(res => res.json())
-    .then(data => setClicks(Array.isArray(data) ? data : []))
-    .catch(() => setClicks([]));
+    .then(r => r.json())
+    .then(d => setClicks(Array.isArray(d) ? d : []))
+    .catch(() => {});
 }, []);
 
   const showToast = (msg, color = "#00e5a0") => {
@@ -411,7 +481,12 @@ export default function App() {
           followup2_date: row.followup2_date || "",
         }));
         setLeads(rows);
-        showToast(`✓ ${rows.length} leads loaded`);
+        fetch(`${BACKEND_URL}/leads`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ leads: rows }),
+        }).catch(() => {});
+        showToast(`✓ ${rows.length} leads loaded & saved`);
         setTab("Leads");
       },
       error: () => showToast("CSV parse failed", "#e05c5c"),
@@ -426,13 +501,14 @@ export default function App() {
     else showToast("Please drop a .csv file", "#e05c5c");
   }, []);
 
-  const handleToggleReply = (globalIdx) => {
-    setLeads(prev => {
-      const updated = [...prev];
-      const cur = String(updated[globalIdx].replied).toUpperCase() === "TRUE";
-      updated[globalIdx] = { ...updated[globalIdx], replied: cur ? "FALSE" : "TRUE" };
-      return updated;
-    });
+  const handleToggleReply = (email, isReplied) => {
+    const newVal = isReplied ? "FALSE" : "TRUE";
+    setLeads(prev => prev.map(l => l.email === email ? { ...l, replied: newVal } : l));
+    fetch(`${BACKEND_URL}/leads/toggle-reply`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, replied: newVal }),
+    }).catch(() => {});
   };
 
   const exportCSV = () => {
@@ -547,12 +623,16 @@ export default function App() {
         )}
 
         {/* Tab Content */}
-        {tab === "Overview" && <Overview leads={leads} clicks={clicks} />}
+        {tab === "Overview" && <Overview leads={leads} clicks={clicks} backendUrl={BACKEND_URL} showToast={showToast} />}
         {tab === "Leads" && (
           <LeadsTable
             leads={leads}
             onToggleReply={handleToggleReply}
-            onClearLeads={() => { setLeads([]); showToast("Leads cleared"); }}
+            onClearLeads={() => {
+              fetch(`${BACKEND_URL}/leads/clear`, { method: "POST" }).catch(() => {});
+              setLeads([]);
+              showToast("Leads cleared");
+            }}
           />
         )}
         {tab === "Clicks" && <ClicksTable clicks={clicks} />}
