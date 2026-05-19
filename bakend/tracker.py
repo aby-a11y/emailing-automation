@@ -64,7 +64,9 @@ def track():
         conn.close()
     except Exception as e:
         print(f"DB error: {e}")
-    return redirect("https://yourwebsite.com")
+    # ✅ FIX: env variable se URL lo, fallback placeholder nahi
+    redirect_url = os.environ.get("REDIRECT_URL", "https://yourwebsite.com")
+    return redirect(redirect_url)
 
 @app.route("/clicks")
 def get_clicks():
