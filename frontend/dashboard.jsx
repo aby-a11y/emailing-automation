@@ -1,14 +1,8 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Papa from "papaparse";
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const TABS = ["Overview", "Leads", "Clicks", "Settings"];
 
-const MOCK_CLICKS = [
-  { name: "John Smith", email: "john@agency.com", round: "round1", time: "2025-05-13 10:22", ip: "103.21.x.x" },
-  { name: "Sarah Lee", email: "sarah@digitalco.com", round: "followup1", time: "2025-05-14 14:05", ip: "45.67.x.x" },
-  { name: "Mike Patel", email: "mike@webstudio.in", round: "round1", time: "2025-05-14 16:33", ip: "182.x.x.x" },
-  { name: "Emma Davis", email: "emma@growthlab.io", round: "followup2", time: "2025-05-15 09:11", ip: "77.x.x.x" },
-];
 
 const ROUND_COLORS = {
   round1: "#00e5a0",
@@ -383,11 +377,17 @@ function Settings({ trackingUrl, setTrackingUrl }) {
 export default function App() {
   const [tab, setTab] = useState("Overview");
   const [leads, setLeads] = useState([]);
-  const [clicks, setClicks] = useState(MOCK_CLICKS);
-  const [trackingUrl, setTrackingUrl] = useState("https://your-app.up.railway.app");
+  const [clicks, setClicks] = useState([]);
+  const [trackingUrl, setTrackingUrl] = useState(BACKEND_URL);
   const [dragging, setDragging] = useState(false);
   const [toast, setToast] = useState(null);
   const fileRef = useRef();
+  useEffect(() => {
+  fetch(`${BACKEND_URL}/clicks`)
+    .then(res => res.json())
+    .then(data => setClicks(Array.isArray(data) ? data : []))
+    .catch(() => setClicks([]));
+}, []);
 
   const showToast = (msg, color = "#00e5a0") => {
     setToast({ msg, color });

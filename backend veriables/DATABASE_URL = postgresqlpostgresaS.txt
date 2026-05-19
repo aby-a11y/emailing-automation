@@ -1,0 +1,11 @@
+DATABASE_URL = postgresql://postgres:aSSgFemSjRRRchszXkEVuIgbFsdIvuDP@postgres.railway.internal:5432/railway
+
+
+
+EMAIL  = deya5579@gmail.com
+
+PASSWORD = bwto rsis pzaw osnp
+
+REDIRECT_URL  https://pixelglobalit.com
+
+TRACKING_BASE_URL  https://balanced-mercy-production-31a7.up.railway.app
