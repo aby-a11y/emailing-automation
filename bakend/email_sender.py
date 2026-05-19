@@ -272,7 +272,8 @@ def make_tracked_url(email, name, round_name):
 # SMTP
 # ─────────────────────────────────────────
 def connect_server():
-    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
     server.login(EMAIL, PASSWORD)
     return server
 
