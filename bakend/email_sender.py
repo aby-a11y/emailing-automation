@@ -309,6 +309,8 @@ def run(stop_flag=None):
             if ok:
                 status.at[i, "round1_sent"] = True
                 status.at[i, "round1_date"] = str(today)
+                save_status(status)   # ✅ FIX: progress save karo
+                sent_count += 1       # ✅ FIX: count increment karo
                 delay = random.randint(40, 90)
                 print(f"  ⏳ Waiting {delay}s...\n")
                 if stop_flag and stop_flag.is_set():
@@ -329,12 +331,12 @@ def run(stop_flag=None):
                             name=row["Name"], tracked_link=tracked_link)
                 print(f"[Follow-up 1] {row['Name']} <{row['Email']}>")
                 ok = send_email(server, row["Email"], row["Name"], subject, body)
+                delay = random.randint(40, 90)   # ✅ FIX: always define delay
                 if ok:
                     status.at[i, "followup1_sent"] = True
                     status.at[i, "followup1_date"] = str(today)
                     save_status(status)
                     sent_count += 1
-                    delay = random.randint(40, 90)
                 print(f"  ⏳ Waiting {delay}s...\n")
                 if stop_flag and stop_flag.is_set():
                     break
@@ -353,12 +355,12 @@ def run(stop_flag=None):
                             name=row["Name"], tracked_link=tracked_link)
                 print(f"[Follow-up 2] {row['Name']} <{row['Email']}>")
                 ok = send_email(server, row["Email"], row["Name"], subject, body)
+                delay = random.randint(40, 90)   # ✅ FIX: always define delay
                 if ok:
                     status.at[i, "followup2_sent"] = True
                     status.at[i, "followup2_date"] = str(today)
                     save_status(status)
                     sent_count += 1
-                    delay = random.randint(40, 90)
                 print(f"  ⏳ Waiting {delay}s...\n")
                 if stop_flag and stop_flag.is_set():
                     break
