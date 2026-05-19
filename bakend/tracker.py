@@ -33,7 +33,7 @@ def init_db():
     conn.commit()
     cur.close()
     conn.close()
-
+init_db() 
 # ─────────────────────────────────────────
 # ROUTES
 # ─────────────────────────────────────────
@@ -127,15 +127,25 @@ def stats_json():
         return jsonify({"total": total, "clicks": clicks, "by_round": by_round})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-@app.route("/upload-leads", methods=["POST"])
-def upload_leads():
+@app.route("/clicks")
+def get_clicks():
     try:
-        file = request.files["file"]
-        file.save("leads.csv")
-        return jsonify({"status": "ok", "message": "leads.csv uploaded"})
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute("""
+            SELECT name, email, round, ip,
+                   clicked_at::text as time
+            FROM clicks ORDER BY clicked_at DESC LIMIT 200
+        """)
+        clicks = [dict(r) for r in cur.fetchall()]
+        cur.close()
+        conn.close()
+        return jsonify(clicks)
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify([]), 500
+    
+  
+
     
 @app.route("/upload-leads", methods=["POST"])
 def upload_leads():
@@ -172,6 +182,5 @@ def stop_emails():
 # START
 # ─────────────────────────────────────────
 if __name__ == "__main__":
-    init_db()
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
