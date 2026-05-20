@@ -7,14 +7,14 @@ import urllib.parse
 from email.mime.text import MIMEText
 from datetime import datetime
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
-
 # ─────────────────────────────────────────
-# CONFIG — Railway env variables se aata hai
+# CONFIG
 # ─────────────────────────────────────────
 EMAIL             = os.environ.get("SENDER_EMAIL",      "deya5579@gmail.com")
 PASSWORD          = os.environ.get("SENDER_PASSWORD",   "bwto rsis pzaw osnp")
-TRACKING_BASE_URL = os.environ.get("TRACKING_BASE_URL", "https://your-app.up.railway.app")
+TRACKING_BASE_URL = os.environ.get("TRACKING_BASE_URL", "https://emailing-automation-production.up.railway.app")
+
+DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 
 # ─────────────────────────────────────────
 # SUBJECTS
@@ -121,7 +121,7 @@ Abhishek
 ]
 
 # ─────────────────────────────────────────
-# TEMPLATES — Follow-up 1 (3 din baad)
+# TEMPLATES — Follow-up 1
 # ─────────────────────────────────────────
 templates_followup1 = [
 """Hi {name},
@@ -174,7 +174,7 @@ Abhishek
 ]
 
 # ─────────────────────────────────────────
-# TEMPLATES — Follow-up 2 (6 din baad)
+# TEMPLATES — Follow-up 2
 # ─────────────────────────────────────────
 templates_followup2 = [
 """Hi {name},
@@ -213,7 +213,7 @@ Abhishek
 ]
 
 # ─────────────────────────────────────────
-# DB FUNCTIONS — CSV bilkul nahi, sirf PostgreSQL
+# DB FUNCTIONS — SQLite
 # ─────────────────────────────────────────
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -221,7 +221,6 @@ def get_db():
     return conn
 
 def load_status():
-    """DB se saare leads fetch karo"""
     conn = get_db()
     cur  = conn.cursor()
     cur.execute("""
@@ -319,12 +318,10 @@ def run(stop_flag=None):
         if not email:
             continue
 
-        # Replied wale skip
         if str(row["replied"]).strip().upper() == "TRUE":
             print(f"  ⏭  Skipped (replied): {email}")
             continue
 
-        # Reconnect har 15 pe
         if sent_count > 0 and sent_count % 15 == 0:
             try: server.quit()
             except: pass
@@ -370,7 +367,7 @@ def run(stop_flag=None):
                 time.sleep(delay)
             continue
 
-        # ── Follow-up 2 (6 din baad Round 1 se) ──
+        # ── Follow-up 2 (6 din baad) ──────────────
         if str(row["followup1_sent"]).upper() == "TRUE" and str(row["followup2_sent"]).upper() != "TRUE" and r1_date:
             try:
                 days_since = (today - datetime.strptime(str(r1_date), "%Y-%m-%d").date()).days

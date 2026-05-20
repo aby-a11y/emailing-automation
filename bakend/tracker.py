@@ -1,12 +1,13 @@
 """
-tracker.py — Railway 
-Click tracking + Leads persistence with PostgreSQL
+tracker.py — Local SQLite version
 """
 
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
 import os
 import sqlite3
+import threading
+
 DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 app = Flask(__name__)
 CORS(app)
@@ -15,7 +16,6 @@ def get_db():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
-    
 
 def init_db():
     conn = get_db()
@@ -38,6 +38,7 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
 init_db()
 
 @app.route("/track")
@@ -55,7 +56,6 @@ def track():
         conn.close()
     except Exception as e:
         print(f"DB error: {e}")
-    # ✅ FIX: env variable se URL lo, fallback placeholder nahi
     redirect_url = os.environ.get("REDIRECT_URL", "https://yourwebsite.com")
     return redirect(redirect_url)
 
@@ -64,12 +64,12 @@ def get_clicks():
     try:
         conn = get_db()
         cur  = conn.cursor()
-        cur.execute("SELECT name, email, round, ip, clicked_at::text as time FROM clicks ORDER BY clicked_at DESC LIMIT 200")
+        cur.execute("SELECT name, email, round, ip, clicked_at as time FROM clicks ORDER BY clicked_at DESC LIMIT 200")
         clicks = [dict(r) for r in cur.fetchall()]
         cur.close()
         conn.close()
         return jsonify(clicks)
-    except:
+    except Exception as e:
         return jsonify([]), 500
 
 @app.route("/leads", methods=["GET"])
@@ -82,7 +82,7 @@ def get_leads():
         cur.close()
         conn.close()
         return jsonify(leads)
-    except:
+    except Exception as e:
         return jsonify([]), 500
 
 @app.route("/leads", methods=["POST"])
@@ -97,11 +97,11 @@ def save_leads():
                 INSERT INTO leads (name, email, replied, round1_sent, round1_date, followup1_sent, followup1_date, followup2_sent, followup2_date)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (email) DO UPDATE SET
-                    name=EXCLUDED.name, replied=EXCLUDED.replied,
-                    round1_sent=EXCLUDED.round1_sent, round1_date=EXCLUDED.round1_date,
-                    followup1_sent=EXCLUDED.followup1_sent, followup1_date=EXCLUDED.followup1_date,
-                    followup2_sent=EXCLUDED.followup2_sent, followup2_date=EXCLUDED.followup2_date,
-                    updated_at=NOW()
+                    name=excluded.name, replied=excluded.replied,
+                    round1_sent=excluded.round1_sent, round1_date=excluded.round1_date,
+                    followup1_sent=excluded.followup1_sent, followup1_date=excluded.followup1_date,
+                    followup2_sent=excluded.followup2_sent, followup2_date=excluded.followup2_date,
+                    updated_at=datetime('now')
             """, (lead.get("name",""), lead.get("email",""), lead.get("replied","FALSE"),
                   lead.get("round1_sent","FALSE"), lead.get("round1_date",""),
                   lead.get("followup1_sent","FALSE"), lead.get("followup1_date",""),
@@ -121,7 +121,7 @@ def toggle_reply():
         replied = data.get("replied", "FALSE")
         conn = get_db()
         cur  = conn.cursor()
-        cur.execute("UPDATE leads SET replied=?, updated_at=NOW() WHERE email=?", (replied, email))
+        cur.execute("UPDATE leads SET replied=?, updated_at=datetime('now') WHERE email=?", (replied, email))
         conn.commit()
         cur.close()
         conn.close()
@@ -142,7 +142,6 @@ def clear_leads():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-import threading
 _stop_flag  = threading.Event()
 _is_running = False
 
@@ -179,5 +178,5 @@ def stop_emails():
     return jsonify({"status": "stopped"})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5050))
     app.run(host="0.0.0.0", port=port)
