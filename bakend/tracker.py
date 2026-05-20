@@ -6,47 +6,38 @@ Click tracking + Leads persistence with PostgreSQL
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
 import os
-import psycopg2
-from psycopg2.extras import RealDictCursor
-
+import sqlite3
+DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 app = Flask(__name__)
 CORS(app)
 
 def get_db():
-    return psycopg2.connect(os.environ["DATABASE_URL"], cursor_factory=RealDictCursor)
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+    
 
 def init_db():
     conn = get_db()
     cur  = conn.cursor()
-    cur.execute("""
+    cur.executescript("""
         CREATE TABLE IF NOT EXISTS clicks (
-            id        SERIAL PRIMARY KEY,
-            email     TEXT,
-            name      TEXT,
-            round     TEXT,
-            ip        TEXT,
-            clicked_at TIMESTAMPTZ DEFAULT NOW()
-        )
-    """)
-    cur.execute("""
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT, name TEXT, round TEXT, ip TEXT,
+            clicked_at TEXT DEFAULT (datetime('now'))
+        );
         CREATE TABLE IF NOT EXISTS leads (
-            id              SERIAL PRIMARY KEY,
-            name            TEXT,
-            email           TEXT UNIQUE,
-            replied         TEXT DEFAULT 'FALSE',
-            round1_sent     TEXT DEFAULT 'FALSE',
-            round1_date     TEXT DEFAULT '',
-            followup1_sent  TEXT DEFAULT 'FALSE',
-            followup1_date  TEXT DEFAULT '',
-            followup2_sent  TEXT DEFAULT 'FALSE',
-            followup2_date  TEXT DEFAULT '',
-            updated_at      TIMESTAMPTZ DEFAULT NOW()
-        )
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT, email TEXT UNIQUE,
+            replied TEXT DEFAULT 'FALSE',
+            round1_sent TEXT DEFAULT 'FALSE', round1_date TEXT DEFAULT '',
+            followup1_sent TEXT DEFAULT 'FALSE', followup1_date TEXT DEFAULT '',
+            followup2_sent TEXT DEFAULT 'FALSE', followup2_date TEXT DEFAULT '',
+            updated_at TEXT DEFAULT (datetime('now'))
+        );
     """)
     conn.commit()
-    cur.close()
     conn.close()
-
 init_db()
 
 @app.route("/track")
