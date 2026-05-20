@@ -1,8 +1,8 @@
 import smtplib
 import random
 import time
-import psycopg2
-from psycopg2.extras import RealDictCursor
+import sqlite3
+DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 from email.mime.text import MIMEText
 from datetime import datetime
 import os
@@ -215,7 +215,9 @@ Abhishek
 # DB FUNCTIONS — CSV bilkul nahi, sirf PostgreSQL
 # ─────────────────────────────────────────
 def get_db():
-    return psycopg2.connect(os.environ["DATABASE_URL"], cursor_factory=RealDictCursor)
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
 def load_status():
     """DB se saare leads fetch karo"""
@@ -238,7 +240,7 @@ def save_lead_round1(email, date_str):
     conn = get_db()
     cur  = conn.cursor()
     cur.execute(
-        "UPDATE leads SET round1_sent='TRUE', round1_date=%s, updated_at=NOW() WHERE email=%s",
+        "UPDATE leads SET round1_sent='TRUE', round1_date=?, updated_at=NOW() WHERE email=?",
         (date_str, email)
     )
     conn.commit(); cur.close(); conn.close()
@@ -247,7 +249,7 @@ def save_lead_followup1(email, date_str):
     conn = get_db()
     cur  = conn.cursor()
     cur.execute(
-        "UPDATE leads SET followup1_sent='TRUE', followup1_date=%s, updated_at=NOW() WHERE email=%s",
+        "UPDATE leads SET followup1_sent='TRUE', followup1_date=?, updated_at=NOW() WHERE email=?",
         (date_str, email)
     )
     conn.commit(); cur.close(); conn.close()
@@ -256,7 +258,7 @@ def save_lead_followup2(email, date_str):
     conn = get_db()
     cur  = conn.cursor()
     cur.execute(
-        "UPDATE leads SET followup2_sent='TRUE', followup2_date=%s, updated_at=NOW() WHERE email=%s",
+        "UPDATE leads SET followup2_sent='TRUE', followup2_date=?, updated_at=NOW() WHERE email=?",
         (date_str, email)
     )
     conn.commit(); cur.close(); conn.close()
