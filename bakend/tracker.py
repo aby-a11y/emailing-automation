@@ -95,7 +95,7 @@ def save_leads():
         for lead in leads:
             cur.execute("""
                 INSERT INTO leads (name, email, replied, round1_sent, round1_date, followup1_sent, followup1_date, followup2_sent, followup2_date)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (email) DO UPDATE SET
                     name=EXCLUDED.name, replied=EXCLUDED.replied,
                     round1_sent=EXCLUDED.round1_sent, round1_date=EXCLUDED.round1_date,
@@ -121,7 +121,7 @@ def toggle_reply():
         replied = data.get("replied", "FALSE")
         conn = get_db()
         cur  = conn.cursor()
-        cur.execute("UPDATE leads SET replied=%s, updated_at=NOW() WHERE email=%s", (replied, email))
+        cur.execute("UPDATE leads SET replied=?, updated_at=NOW() WHERE email=?", (replied, email))
         conn.commit()
         cur.close()
         conn.close()

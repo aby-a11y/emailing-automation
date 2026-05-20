@@ -1,12 +1,13 @@
+import os
+import sqlite3
 import smtplib
 import random
 import time
-import sqlite3
-DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
+import urllib.parse
 from email.mime.text import MIMEText
 from datetime import datetime
-import os
-import urllib.parse
+
+DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 
 # ─────────────────────────────────────────
 # CONFIG — Railway env variables se aata hai
@@ -240,7 +241,7 @@ def save_lead_round1(email, date_str):
     conn = get_db()
     cur  = conn.cursor()
     cur.execute(
-        "UPDATE leads SET round1_sent='TRUE', round1_date=?, updated_at=NOW() WHERE email=?",
+        "UPDATE leads SET round1_sent='TRUE', round1_date=?, updated_at=datetime('now') WHERE email=?",
         (date_str, email)
     )
     conn.commit(); cur.close(); conn.close()
@@ -249,7 +250,7 @@ def save_lead_followup1(email, date_str):
     conn = get_db()
     cur  = conn.cursor()
     cur.execute(
-        "UPDATE leads SET followup1_sent='TRUE', followup1_date=?, updated_at=NOW() WHERE email=?",
+        "UPDATE leads SET followup1_sent='TRUE', followup1_date=?, updated_at=datetime('now') WHERE email=?",
         (date_str, email)
     )
     conn.commit(); cur.close(); conn.close()
@@ -258,7 +259,7 @@ def save_lead_followup2(email, date_str):
     conn = get_db()
     cur  = conn.cursor()
     cur.execute(
-        "UPDATE leads SET followup2_sent='TRUE', followup2_date=?, updated_at=NOW() WHERE email=?",
+        "UPDATE leads SET followup2_sent='TRUE', followup2_date=?, updated_at=datetime('now') WHERE email=?",
         (date_str, email)
     )
     conn.commit(); cur.close(); conn.close()
