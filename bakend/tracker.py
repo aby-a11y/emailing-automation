@@ -49,7 +49,7 @@ def track():
     try:
         conn = get_db()
         cur  = conn.cursor()
-        cur.execute("INSERT INTO clicks (email, name, round, ip) VALUES (%s, %s, %s, %s)", (email, name, round_name, ip))
+        cur.execute("INSERT INTO clicks (email, name, round, ip) VALUES (?, ?, ?, ?)", (email, name, round_name, ip))
         conn.commit()
         cur.close()
         conn.close()
