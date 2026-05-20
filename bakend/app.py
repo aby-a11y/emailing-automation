@@ -5,10 +5,18 @@ import sys
 import time
 from flask import send_from_directory
 
-sys.path.insert(0, os.path.dirname(__file__))
+# PyInstaller ke liye correct path
+if getattr(sys, 'frozen', False):
+    BASE_DIR = sys._MEIPASS
+else:
+    BASE_DIR = os.path.dirname(__file__)
+
+sys.path.insert(0, BASE_DIR)
+
+import email_sender  # force include in .exe
 from tracker import app
 
-DIST_FOLDER = r"C:\OutreachOS\frontend\dist"
+DIST_FOLDER = os.path.join(BASE_DIR, "dist")
 
 @app.route("/")
 def index():

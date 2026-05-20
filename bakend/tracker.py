@@ -7,6 +7,7 @@ from flask_cors import CORS
 import os
 import sqlite3
 import threading
+import email_sender
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 app = Flask(__name__)
