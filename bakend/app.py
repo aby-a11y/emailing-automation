@@ -5,11 +5,13 @@ import sys
 import time
 from flask import send_from_directory
 
-# PyInstaller ke liye correct path
+# ─── PATH FIX: .exe aur normal dono ke liye ───────────────────
 if getattr(sys, 'frozen', False):
+    # PyInstaller .exe ke andar
     BASE_DIR = sys._MEIPASS
 else:
-    BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")
+    # Normal python run
+    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
 
 sys.path.insert(0, BASE_DIR)
 

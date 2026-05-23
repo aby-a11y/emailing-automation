@@ -1,4 +1,4 @@
-('C:\\OutreachOS\\bakend\\build\\OutreachOS\\PYZ-00.pyz',
+('C:\\projects\\OutreachOS\\bakend\\build\\OutreachOS\\PYZ-00.pyz',
  [('__future__',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\__future__.py',
@@ -631,6 +631,10 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\email\\mime\\base.py',
    'PYMODULE'),
+  ('email.mime.multipart',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\email\\mime\\multipart.py',
+   'PYMODULE'),
   ('email.mime.nonmultipart',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\email\\mime\\nonmultipart.py',
@@ -655,7 +659,9 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\email\\utils.py',
    'PYMODULE'),
-  ('email_sender', 'C:\\OutreachOS\\bakend\\email_sender.py', 'PYMODULE'),
+  ('email_sender',
+   'C:\\projects\\OutreachOS\\bakend\\email_sender.py',
+   'PYMODULE'),
   ('flask',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask\\__init__.py',
@@ -832,6 +838,10 @@
   ('http.server',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\server.py',
+   'PYMODULE'),
+  ('imaplib',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\imaplib.py',
    'PYMODULE'),
   ('importlib',
    'C:\\Users\\WEB DIGITAL '
@@ -1376,6 +1386,34 @@
   ('proxy_tools',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\proxy_tools\\__init__.py',
+   'PYMODULE'),
+  ('psycopg2',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\__init__.py',
+   'PYMODULE'),
+  ('psycopg2._ipaddress',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\_ipaddress.py',
+   'PYMODULE'),
+  ('psycopg2._json',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\_json.py',
+   'PYMODULE'),
+  ('psycopg2._range',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\_range.py',
+   'PYMODULE'),
+  ('psycopg2.extensions',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\extensions.py',
+   'PYMODULE'),
+  ('psycopg2.extras',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\extras.py',
+   'PYMODULE'),
+  ('psycopg2.sql',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\sql.py',
    'PYMODULE'),
   ('py_compile',
    'C:\\Users\\WEB DIGITAL '
@@ -2193,7 +2231,7 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\tracemalloc.py',
    'PYMODULE'),
-  ('tracker', 'C:\\OutreachOS\\bakend\\tracker.py', 'PYMODULE'),
+  ('tracker', 'C:\\projects\\OutreachOS\\bakend\\tracker.py', 'PYMODULE'),
   ('tty',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\tty.py',

@@ -164,10 +164,24 @@ def run_emails():
     def run_with_flag():
         global _is_running
         try:
-            from email_sender import run
-            run(_stop_flag)
+            # email_sender ko sahi DB path batao
+            os.environ["OUTREACHOS_DB"] = DB_PATH
+            print(f"[Automation] DB path: {DB_PATH}")
+            import importlib
+            import email_sender
+            importlib.reload(email_sender)  # fresh reload taaki DB_PATH update ho
+            email_sender.run(_stop_flag)
         except Exception as e:
-            print(f"Email error: {e}")
+            import traceback
+            err = traceback.format_exc()
+            print(f"[Automation ERROR] {err}")
+            # Error file mein bhi likho
+            try:
+                log_path = os.path.join(os.path.dirname(sys.executable if getattr(sys, 'frozen', False) else __file__), "automation_error.txt")
+                with open(log_path, "w") as f:
+                    f.write(err)
+            except:
+                pass
         finally:
             _is_running = False
     t = threading.Thread(target=run_with_flag)
