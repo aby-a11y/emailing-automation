@@ -247,3 +247,33 @@ def followup_queue():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/send-followup", methods=["POST"])
+def send_followup():
+    global _is_running
+    if _is_running:
+        return jsonify({"status": "already_running"})
+    data  = request.get_json()
+    email = data.get("email")
+    if not email:
+        return jsonify({"error": "email required"}), 400
+    _stop_flag.clear()
+    _is_running = True
+    def run_single():
+        global _is_running
+        try:
+            os.environ["OUTREACHOS_DB"] = DB_PATH
+            import importlib
+            import email_sender
+            importlib.reload(email_sender)
+            # Sirf is ek lead ke liye run karo
+            email_sender.run_single_followup(email, _stop_flag)
+        except Exception as e:
+            import traceback
+            print(f"[Followup ERROR] {traceback.format_exc()}")
+        finally:
+            _is_running = False
+    t = threading.Thread(target=run_single)
+    t.daemon = True
+    t.start()
+    return jsonify({"status": "started"})

@@ -421,6 +421,57 @@ def run(stop_flag=None):
     except: pass
 
     print(f"\n[OK] Done! Total emails sent this run: {sent_count}")
+    
+
+def run_single_followup(target_email, stop_flag=None):
+    """Sirf ek specific lead ka followup bhejo"""
+    leads = load_leads()
+    today = datetime.today()
+    server = connect_server()
+
+    for row in leads:
+        if row.get("email", "").lower() != target_email.lower():
+            continue
+        if str(row["replied"]).upper() == "TRUE":
+            print(f"[SKIP] Replied: {target_email}")
+            break
+
+        name  = row.get("name", "") or ""
+        email = row.get("email", "") or ""
+        r1_date_str = row.get("round1_date", "") or ""
+        if not r1_date_str:
+            break
+
+        try:
+            r1_date     = datetime.strptime(r1_date_str, "%Y-%m-%d")
+            hours_since = (today - r1_date).total_seconds() / 3600
+        except:
+            break
+
+        # Follow-up 1
+        if str(row["followup1_sent"]).upper() != "TRUE" and hours_since >= 72:
+            tracked_link = make_tracked_url(email, name, "followup1")
+            subject = random.choice(subjects_followup1)
+            body    = random.choice(templates_followup1).format(name=name, tracked_link=tracked_link)
+            print(f"[Single F1] {name} <{email}>")
+            ok = send_email(server, email, name, subject, body)
+            if ok:
+                save_followup1(email, today.strftime("%Y-%m-%d"))
+            break
+
+        # Follow-up 2
+        if str(row["followup2_sent"]).upper() != "TRUE" and hours_since >= 144:
+            tracked_link = make_tracked_url(email, name, "followup2")
+            subject = random.choice(subjects_followup2)
+            body    = random.choice(templates_followup2).format(name=name, tracked_link=tracked_link)
+            print(f"[Single F2] {name} <{email}>")
+            ok = send_email(server, email, name, subject, body)
+            if ok:
+                save_followup2(email, today.strftime("%Y-%m-%d"))
+            break
+
+    try: server.quit()
+    except: pass
 
 if __name__ == "__main__":
     run()

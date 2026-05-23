@@ -41,8 +41,8 @@
  {},
  0,
  [],
- [('dist\\assets\\index-CWWFc-JJ.js',
-   'C:\\projects\\OutreachOS\\frontend\\dist\\assets\\index-CWWFc-JJ.js',
+ [('dist\\assets\\index-Dn14rwzF.js',
+   'C:\\projects\\OutreachOS\\frontend\\dist\\assets\\index-Dn14rwzF.js',
    'DATA'),
   ('dist\\index.html',
    'C:\\projects\\OutreachOS\\frontend\\dist\\index.html',
@@ -2310,17 +2310,17 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2\\__init__.py',
    'PYMODULE'),
-  ('tracemalloc',
+  ('_py_abc',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\tracemalloc.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_py_abc.py',
    'PYMODULE'),
   ('stringprep',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\stringprep.py',
    'PYMODULE'),
-  ('_py_abc',
+  ('tracemalloc',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_py_abc.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\tracemalloc.py',
    'PYMODULE'),
   ('tracker', 'C:\\projects\\OutreachOS\\bakend\\tracker.py', 'PYMODULE'),
   ('sqlite3',
@@ -2875,9 +2875,17 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\proxy_tools\\__init__.py',
    'PYMODULE')],
- [('webview\\lib\\runtimes\\win-x86\\native\\WebView2Loader.dll',
+ [('webview\\lib\\WebBrowserInterop.x64.dll',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\WebBrowserInterop.x64.dll',
+   'BINARY'),
+  ('webview\\lib\\runtimes\\win-x86\\native\\WebView2Loader.dll',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\runtimes\\win-x86\\native\\WebView2Loader.dll',
+   'BINARY'),
+  ('webview\\lib\\Microsoft.Web.WebView2.Core.dll',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\Microsoft.Web.WebView2.Core.dll',
    'BINARY'),
   ('webview\\lib\\runtimes\\win-arm64\\native\\WebView2Loader.dll',
    'C:\\Users\\WEB DIGITAL '
@@ -2886,14 +2894,6 @@
   ('webview\\lib\\WebBrowserInterop.x86.dll',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\WebBrowserInterop.x86.dll',
-   'BINARY'),
-  ('webview\\lib\\WebBrowserInterop.x64.dll',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\WebBrowserInterop.x64.dll',
-   'BINARY'),
-  ('webview\\lib\\Microsoft.Web.WebView2.Core.dll',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\Microsoft.Web.WebView2.Core.dll',
    'BINARY'),
   ('webview\\lib\\Microsoft.Web.WebView2.WinForms.dll',
    'C:\\Users\\WEB DIGITAL '
@@ -3031,45 +3031,45 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\DLLs\\sqlite3.dll',
    'BINARY'),
-  ('psycopg2_binary.libs\\libssl-3-x64-42d016cedaa8505e1c2f3866222613c3.dll',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2_binary.libs\\libssl-3-x64-42d016cedaa8505e1c2f3866222613c3.dll',
-   'BINARY'),
   ('psycopg2_binary.libs\\libcrypto-3-x64-00fd260ae72c744ee1352e64a568f454.dll',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2_binary.libs\\libcrypto-3-x64-00fd260ae72c744ee1352e64a568f454.dll',
+   'BINARY'),
+  ('psycopg2_binary.libs\\libssl-3-x64-42d016cedaa8505e1c2f3866222613c3.dll',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\psycopg2_binary.libs\\libssl-3-x64-42d016cedaa8505e1c2f3866222613c3.dll',
    'BINARY')],
  [],
  [],
- [('dist\\assets\\index-CWWFc-JJ.js',
-   'C:\\projects\\OutreachOS\\frontend\\dist\\assets\\index-CWWFc-JJ.js',
+ [('dist\\assets\\index-Dn14rwzF.js',
+   'C:\\projects\\OutreachOS\\frontend\\dist\\assets\\index-Dn14rwzF.js',
    'DATA'),
   ('dist\\index.html',
    'C:\\projects\\OutreachOS\\frontend\\dist\\index.html',
-   'DATA'),
-  ('importlib_metadata-8.7.1.dist-info\\top_level.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
-   'DATA'),
-  ('importlib_metadata-8.7.1.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
-   'DATA'),
-  ('importlib_metadata-8.7.1.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\WHEEL',
    'DATA'),
   ('importlib_metadata-8.7.1.dist-info\\METADATA',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\METADATA',
    'DATA'),
-  ('importlib_metadata-8.7.1.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\RECORD',
-   'DATA'),
   ('importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
+   'DATA'),
+  ('importlib_metadata-8.7.1.dist-info\\top_level.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
+   'DATA'),
+  ('importlib_metadata-8.7.1.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\WHEEL',
+   'DATA'),
+  ('importlib_metadata-8.7.1.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
+   'DATA'),
+  ('importlib_metadata-8.7.1.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\RECORD',
    'DATA'),
   ('setuptools\\_vendor\\jaraco\\text\\Lorem ipsum.txt',
    'C:\\Users\\WEB DIGITAL '
@@ -3080,14 +3080,6 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\api.js',
    'DATA'),
-  ('webview\\js\\lib\\dom_json.js',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\lib\\dom_json.js',
-   'DATA'),
-  ('webview\\js\\customize.js',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\customize.js',
-   'DATA'),
   ('webview\\js\\lib\\polyfill.js',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\lib\\polyfill.js',
@@ -3096,101 +3088,41 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\state.js',
    'DATA'),
-  ('webview\\lib\\pywebview-android.jar',
+  ('webview\\js\\customize.js',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\pywebview-android.jar',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\customize.js',
+   'DATA'),
+  ('webview\\js\\lib\\dom_json.js',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\lib\\dom_json.js',
    'DATA'),
   ('webview\\js\\finish.js',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\finish.js',
    'DATA'),
-  ('flask-3.1.2.dist-info\\RECORD',
+  ('webview\\lib\\pywebview-android.jar',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\RECORD',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\METADATA',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\RECORD',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
-   'DATA'),
-  ('click-8.3.1.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\METADATA',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\METADATA',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\WHEEL',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('werkzeug-3.1.5.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\WHEEL',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\top_level.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\top_level.txt',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
-   'DATA'),
-  ('werkzeug-3.1.5.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\METADATA',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\INSTALLER',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\INSTALLER',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\pywebview-android.jar',
    'DATA'),
   ('flask-3.1.2.dist-info\\licenses\\LICENSE.txt',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\licenses\\LICENSE.txt',
    'DATA'),
-  ('werkzeug-3.1.5.dist-info\\RECORD',
+  ('click-8.3.1.dist-info\\licenses\\LICENSE.txt',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\RECORD',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\licenses\\LICENSE.txt',
    'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\RECORD',
+  ('click-8.3.1.dist-info\\RECORD',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\RECORD',
    'DATA'),
-  ('click-8.3.1.dist-info\\INSTALLER',
+  ('itsdangerous-2.2.0.dist-info\\METADATA',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\INSTALLER',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\METADATA',
    'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\LICENSE.md',
+  ('werkzeug-3.1.5.dist-info\\INSTALLER',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\LICENSE.md',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\WHEEL',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\entry_points.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\entry_points.txt',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\INSTALLER',
    'DATA'),
   ('flask-3.1.2.dist-info\\METADATA',
    'C:\\Users\\WEB DIGITAL '
@@ -3200,100 +3132,156 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\METADATA',
    'DATA'),
-  ('click-8.3.1.dist-info\\licenses\\LICENSE.txt',
+  ('flask-3.1.2.dist-info\\entry_points.txt',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\licenses\\LICENSE.txt',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\entry_points.txt',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\top_level.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\top_level.txt',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\METADATA',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\RECORD',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\LICENSE.md',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\LICENSE.md',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\INSTALLER',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\WHEEL',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\METADATA',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
+   'DATA'),
+  ('click-8.3.1.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\INSTALLER',
    'DATA'),
   ('click-8.3.1.dist-info\\WHEEL',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\WHEEL',
    'DATA'),
-  ('markupsafe-3.0.3.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\RECORD',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\top_level.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\top_level.txt',
-   'DATA'),
   ('markupsafe-3.0.3.dist-info\\WHEEL',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\WHEEL',
    'DATA'),
-  ('click-8.3.1.dist-info\\RECORD',
+  ('itsdangerous-2.2.0.dist-info\\WHEEL',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\RECORD',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
    'DATA'),
-  ('werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
+  ('flask-3.1.2.dist-info\\RECORD',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\RECORD',
    'DATA'),
   ('pyreadline3-3.5.4.dist-info\\INSTALLER',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\INSTALLER',
    'DATA'),
+  ('markupsafe-3.0.3.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\INSTALLER',
+   'DATA'),
   ('flask-3.1.2.dist-info\\REQUESTED',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\REQUESTED',
    'DATA'),
-  ('werkzeug-3.1.5.dist-info\\INSTALLER',
+  ('pyreadline3-3.5.4.dist-info\\RECORD',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\INSTALLER',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\RECORD',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\WHEEL',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\RECORD',
+   'DATA'),
+  ('click-8.3.1.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\METADATA',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\top_level.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\top_level.txt',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\WHEEL',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
    'DATA'),
   ('base_library.zip',
    'C:\\projects\\OutreachOS\\bakend\\build\\OutreachOS\\base_library.zip',
    'DATA')],
- [('warnings',
+ [('codecs',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\warnings.py',
-   'PYMODULE'),
-  ('_weakrefset',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_weakrefset.py',
-   'PYMODULE'),
-  ('ntpath',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\ntpath.py',
-   'PYMODULE'),
-  ('sre_parse',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\sre_parse.py',
-   'PYMODULE'),
-  ('functools',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\functools.py',
-   'PYMODULE'),
-  ('linecache',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\linecache.py',
-   'PYMODULE'),
-  ('stat',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\stat.py',
-   'PYMODULE'),
-  ('types',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\types.py',
-   'PYMODULE'),
-  ('weakref',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\weakref.py',
-   'PYMODULE'),
-  ('collections.abc',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\collections\\abc.py',
-   'PYMODULE'),
-  ('collections',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\collections\\__init__.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\codecs.py',
    'PYMODULE'),
   ('posixpath',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\posixpath.py',
    'PYMODULE'),
-  ('heapq',
+  ('sre_parse',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\heapq.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\sre_parse.py',
+   'PYMODULE'),
+  ('keyword',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\keyword.py',
+   'PYMODULE'),
+  ('abc',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\abc.py',
+   'PYMODULE'),
+  ('io',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\io.py',
+   'PYMODULE'),
+  ('enum',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\enum.py',
+   'PYMODULE'),
+  ('copyreg',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\copyreg.py',
+   'PYMODULE'),
+  ('sre_constants',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\sre_constants.py',
+   'PYMODULE'),
+  ('genericpath',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\genericpath.py',
    'PYMODULE'),
   ('encodings.zlib_codec',
    'C:\\Users\\WEB DIGITAL '
@@ -3783,53 +3771,57 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\encodings\\__init__.py',
    'PYMODULE'),
-  ('abc',
+  ('heapq',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\abc.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\heapq.py',
    'PYMODULE'),
-  ('io',
+  ('weakref',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\io.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\weakref.py',
    'PYMODULE'),
-  ('genericpath',
+  ('warnings',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\genericpath.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\warnings.py',
    'PYMODULE'),
-  ('codecs',
+  ('types',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\codecs.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\types.py',
    'PYMODULE'),
-  ('traceback',
+  ('collections.abc',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\traceback.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\collections\\abc.py',
    'PYMODULE'),
-  ('sre_constants',
+  ('collections',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\sre_constants.py',
-   'PYMODULE'),
-  ('keyword',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\keyword.py',
-   'PYMODULE'),
-  ('sre_compile',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\sre_compile.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\collections\\__init__.py',
    'PYMODULE'),
   ('operator',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\operator.py',
    'PYMODULE'),
-  ('locale',
+  ('functools',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\locale.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\functools.py',
    'PYMODULE'),
-  ('enum',
+  ('linecache',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\enum.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\linecache.py',
    'PYMODULE'),
-  ('copyreg',
+  ('traceback',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\copyreg.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\traceback.py',
+   'PYMODULE'),
+  ('ntpath',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\ntpath.py',
+   'PYMODULE'),
+  ('sre_compile',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\sre_compile.py',
+   'PYMODULE'),
+  ('_collections_abc',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_collections_abc.py',
    'PYMODULE'),
   ('re._parser',
    'C:\\Users\\WEB DIGITAL '
@@ -3855,9 +3847,17 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\reprlib.py',
    'PYMODULE'),
-  ('_collections_abc',
+  ('stat',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_collections_abc.py',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\stat.py',
+   'PYMODULE'),
+  ('locale',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\locale.py',
+   'PYMODULE'),
+  ('_weakrefset',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_weakrefset.py',
    'PYMODULE'),
   ('os',
    'C:\\Users\\WEB DIGITAL '
