@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import Papa from "papaparse";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-const TABS = ["Overview", "Leads", "Clicks", "Settings"];
+const TABS = ["Overview", "Leads", "Follow-up", "Clicks", "Settings"];
 
 
 const ROUND_COLORS = {
@@ -390,6 +390,100 @@ function ClicksTable({ clicks }) {
   );
 }
 
+function FollowupQueue({ backendUrl, showToast }) {
+  const [queue, setQueue] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [sending, setSending] = useState({});
+
+  const fetchQueue = () => {
+    fetch(`${backendUrl}/followup-queue`)
+      .then(r => r.json())
+      .then(d => setQueue(Array.isArray(d) ? d : []))
+      .catch(() => {});
+  };
+
+  useEffect(() => { fetchQueue(); }, []);
+
+  const sendFollowup = async (email) => {
+    setSending(prev => ({ ...prev, [email]: true }));
+    try {
+      await fetch(`${backendUrl}/run-emails`, { method: "POST" });
+      showToast("Follow-up started!", "#00e5a0");
+      setTimeout(fetchQueue, 3000);
+    } catch {
+      showToast("Failed", "#e05c5c");
+    }
+    setSending(prev => ({ ...prev, [email]: false }));
+  };
+
+  const eligible = queue.filter(r => r.eligible);
+  const pending  = queue.filter(r => !r.eligible);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ color: "#888", fontSize: 11, letterSpacing: 2, textTransform: "uppercase" }}>
+          Follow-up Queue — {eligible.length} eligible
+        </div>
+        <button onClick={() => { fetch(`${backendUrl}/run-emails`, { method: "POST" }); showToast("Bulk follow-ups started!", "#00e5a0"); setTimeout(fetchQueue, 3000); }} style={{
+          background: "#00e5a0", border: "none", color: "#000",
+          borderRadius: 7, padding: "8px 18px", cursor: "pointer",
+          fontWeight: 700, fontSize: 12, fontFamily: "inherit",
+        }}>Send All Follow-ups ({eligible.length})</button>
+      </div>
+
+      <div style={{ background: "#13161d", border: "1px solid #23272f", borderRadius: 12, overflow: "hidden" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr style={{ borderBottom: "1px solid #1e2229" }}>
+              {["Name", "Email", "Hours Since R1", "Next", "Status", "Action"].map(h => (
+                <th key={h} style={{ padding: "12px 16px", textAlign: "left", color: "#444", fontSize: 10, letterSpacing: 2, textTransform: "uppercase" }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {queue.length === 0 && (
+              <tr><td colSpan={6} style={{ padding: 40, textAlign: "center", color: "#333" }}>No leads in follow-up queue</td></tr>
+            )}
+            {queue.map((row, i) => (
+              <tr key={i} style={{ borderBottom: "1px solid #1a1e26", opacity: row.eligible ? 1 : 0.45 }}>
+                <td style={{ padding: "12px 16px", color: "#ddd", fontSize: 13 }}>{row.name}</td>
+                <td style={{ padding: "12px 16px", color: "#888", fontSize: 12, fontFamily: "monospace" }}>{row.email}</td>
+                <td style={{ padding: "12px 16px", color: row.hours_since >= 72 ? "#00e5a0" : "#f5a623", fontSize: 13 }}>{row.hours_since}h</td>
+                <td style={{ padding: "12px 16px" }}>
+                  <span style={{ background: row.next_action === "followup1" ? "#f5a62322" : "#e05c5c22", color: row.next_action === "followup1" ? "#f5a623" : "#e05c5c", border: `1px solid ${row.next_action === "followup1" ? "#f5a62344" : "#e05c5c44"}`, borderRadius: 4, padding: "2px 8px", fontSize: 11, fontWeight: 700 }}>
+                    {row.next_action === "followup1" ? "F1" : "F2"}
+                  </span>
+                </td>
+                <td style={{ padding: "12px 16px" }}>
+                  {row.eligible
+                    ? <span style={{ color: "#00e5a0", fontSize: 12 }}>Ready</span>
+                    : <span style={{ color: "#555", fontSize: 12 }}>Waiting</span>}
+                </td>
+                <td style={{ padding: "12px 16px" }}>
+                  <button onClick={() => sendFollowup(row.email)} disabled={!row.eligible || sending[row.email]} style={{
+                    background: row.eligible ? "#00e5a011" : "transparent",
+                    border: `1px solid ${row.eligible ? "#00e5a033" : "#2a2f3a"}`,
+                    color: row.eligible ? "#00e5a0" : "#444",
+                    borderRadius: 5, padding: "5px 12px",
+                    cursor: row.eligible ? "pointer" : "not-allowed",
+                    fontSize: 11, fontFamily: "inherit",
+                  }}>
+                    {sending[row.email] ? "Sending..." : "Follow-up"}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div style={{ padding: "10px 16px", borderTop: "1px solid #1e2229", color: "#333", fontSize: 11 }}>
+          {eligible.length} ready · {pending.length} waiting (under 72h)
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Settings({ trackingUrl, setTrackingUrl }) {
   const [saved, setSaved] = useState(false);
   return (
@@ -636,6 +730,7 @@ export default function App() {
           />
         )}
         {tab === "Clicks" && <ClicksTable clicks={clicks} />}
+        {tab === "Follow-up" && <FollowupQueue backendUrl={BACKEND_URL} showToast={showToast} />}
         {tab === "Settings" && <Settings trackingUrl={trackingUrl} setTrackingUrl={setTrackingUrl} />}
       </div>
 

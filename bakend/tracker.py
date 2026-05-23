@@ -196,6 +196,54 @@ def stop_emails():
     _is_running = False
     return jsonify({"status": "stopped"})
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5050))
-    app.run(host="0.0.0.0", port=port)
+@app.route("/followup-queue", methods=["GET"])
+def followup_queue():
+    try:
+        from datetime import datetime
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute("""
+            SELECT name, email, round1_sent, round1_date,
+                   followup1_sent, followup1_date,
+                   followup2_sent, replied
+            FROM leads
+            WHERE replied != 'TRUE'
+            AND round1_sent = 'TRUE'
+            AND (followup2_sent != 'TRUE')
+            ORDER BY round1_date ASC
+        """)
+        rows = [dict(r) for r in cur.fetchall()]
+        cur.close(); conn.close()
+
+        today = datetime.today()
+        result = []
+        for r in rows:
+            if not r["round1_date"]:
+                continue
+            try:
+                sent_date = datetime.strptime(str(r["round1_date"]), "%Y-%m-%d")
+                hours_since = (today - sent_date).total_seconds() / 3600
+            except:
+                continue
+
+            # Next action determine karo
+            if str(r["followup1_sent"]).upper() != "TRUE":
+                next_action = "followup1"
+                eligible = hours_since >= 72
+            else:
+                next_action = "followup2"
+                eligible = hours_since >= 144
+
+            result.append({
+                "name": r["name"],
+                "email": r["email"],
+                "hours_since": round(hours_since),
+                "next_action": next_action,
+                "eligible": eligible,
+                "followup1_sent": r["followup1_sent"],
+                "followup2_sent": r["followup2_sent"],
+            })
+
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
