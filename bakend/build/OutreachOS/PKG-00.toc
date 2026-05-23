@@ -48,33 +48,33 @@
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_setuptools.py',
    'PYSOURCE'),
   ('app', 'C:\\OutreachOS\\bakend\\app.py', 'PYSOURCE'),
-  ('webview\\lib\\runtimes\\win-x64\\native\\WebView2Loader.dll',
+  ('webview\\lib\\WebBrowserInterop.x64.dll',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\runtimes\\win-x64\\native\\WebView2Loader.dll',
-   'BINARY'),
-  ('webview\\lib\\runtimes\\win-x86\\native\\WebView2Loader.dll',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\runtimes\\win-x86\\native\\WebView2Loader.dll',
-   'BINARY'),
-  ('webview\\lib\\runtimes\\win-arm64\\native\\WebView2Loader.dll',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\runtimes\\win-arm64\\native\\WebView2Loader.dll',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\WebBrowserInterop.x64.dll',
    'BINARY'),
   ('webview\\lib\\Microsoft.Web.WebView2.WinForms.dll',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\Microsoft.Web.WebView2.WinForms.dll',
    'BINARY'),
-  ('webview\\lib\\WebBrowserInterop.x64.dll',
+  ('webview\\lib\\runtimes\\win-x64\\native\\WebView2Loader.dll',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\WebBrowserInterop.x64.dll',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\runtimes\\win-x64\\native\\WebView2Loader.dll',
+   'BINARY'),
+  ('webview\\lib\\runtimes\\win-arm64\\native\\WebView2Loader.dll',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\runtimes\\win-arm64\\native\\WebView2Loader.dll',
+   'BINARY'),
+  ('webview\\lib\\WebBrowserInterop.x86.dll',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\WebBrowserInterop.x86.dll',
    'BINARY'),
   ('webview\\lib\\Microsoft.Web.WebView2.Core.dll',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\Microsoft.Web.WebView2.Core.dll',
    'BINARY'),
-  ('webview\\lib\\WebBrowserInterop.x86.dll',
+  ('webview\\lib\\runtimes\\win-x86\\native\\WebView2Loader.dll',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\WebBrowserInterop.x86.dll',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\runtimes\\win-x86\\native\\WebView2Loader.dll',
    'BINARY'),
   ('python312.dll',
    'C:\\Users\\WEB DIGITAL '
@@ -200,18 +200,6 @@
    'C:\\OutreachOS\\frontend\\dist\\assets\\index-CWWFc-JJ.js',
    'DATA'),
   ('dist\\index.html', 'C:\\OutreachOS\\frontend\\dist\\index.html', 'DATA'),
-  ('importlib_metadata-8.7.1.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\RECORD',
-   'DATA'),
-  ('importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
-   'DATA'),
-  ('importlib_metadata-8.7.1.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\WHEEL',
-   'DATA'),
   ('importlib_metadata-8.7.1.dist-info\\METADATA',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\METADATA',
@@ -220,9 +208,21 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
    'DATA'),
+  ('importlib_metadata-8.7.1.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\RECORD',
+   'DATA'),
   ('importlib_metadata-8.7.1.dist-info\\INSTALLER',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
+   'DATA'),
+  ('importlib_metadata-8.7.1.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\WHEEL',
+   'DATA'),
+  ('importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
    'DATA'),
   ('setuptools\\_vendor\\jaraco\\text\\Lorem ipsum.txt',
    'C:\\Users\\WEB DIGITAL '
@@ -233,165 +233,165 @@
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\customize.js',
    'DATA'),
-  ('webview\\js\\state.js',
+  ('webview\\js\\finish.js',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\state.js',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\finish.js',
    'DATA'),
   ('webview\\js\\api.js',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\api.js',
    'DATA'),
-  ('webview\\js\\finish.js',
+  ('webview\\js\\state.js',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\finish.js',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\state.js',
    'DATA'),
   ('webview\\js\\lib\\dom_json.js',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\lib\\dom_json.js',
    'DATA'),
-  ('webview\\lib\\pywebview-android.jar',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\pywebview-android.jar',
-   'DATA'),
   ('webview\\js\\lib\\polyfill.js',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\js\\lib\\polyfill.js',
    'DATA'),
-  ('flask-3.1.2.dist-info\\licenses\\LICENSE.txt',
+  ('webview\\lib\\pywebview-android.jar',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\licenses\\LICENSE.txt',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\METADATA',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\METADATA',
-   'DATA'),
-  ('click-8.3.1.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\METADATA',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\entry_points.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\entry_points.txt',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\METADATA',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\WHEEL',
-   'DATA'),
-  ('werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
-   'DATA'),
-  ('werkzeug-3.1.5.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\METADATA',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\WHEEL',
-   'DATA'),
-  ('click-8.3.1.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\WHEEL',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\RECORD',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\REQUESTED',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\REQUESTED',
-   'DATA'),
-  ('click-8.3.1.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\INSTALLER',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\RECORD',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\INSTALLER',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\INSTALLER',
-   'DATA'),
-  ('werkzeug-3.1.5.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\RECORD',
-   'DATA'),
-  ('flask-3.1.2.dist-info\\RECORD',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\RECORD',
-   'DATA'),
-  ('markupsafe-3.0.3.dist-info\\top_level.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\top_level.txt',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\LICENSE.md',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\LICENSE.md',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\WHEEL',
-   'DATA'),
-  ('werkzeug-3.1.5.dist-info\\WHEEL',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\WHEEL',
-   'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\top_level.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\top_level.txt',
-   'DATA'),
-  ('werkzeug-3.1.5.dist-info\\INSTALLER',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\INSTALLER',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\METADATA',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\METADATA',
-   'DATA'),
-  ('click-8.3.1.dist-info\\licenses\\LICENSE.txt',
-   'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\licenses\\LICENSE.txt',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\webview\\lib\\pywebview-android.jar',
    'DATA'),
   ('click-8.3.1.dist-info\\RECORD',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\RECORD',
    'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\INSTALLER',
+  ('flask-3.1.2.dist-info\\METADATA',
    'C:\\Users\\WEB DIGITAL '
-   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\INSTALLER',
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\METADATA',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\entry_points.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\entry_points.txt',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\top_level.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\top_level.txt',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\WHEEL',
    'DATA'),
   ('itsdangerous-2.2.0.dist-info\\RECORD',
    'C:\\Users\\WEB DIGITAL '
    '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
+   'DATA'),
+  ('click-8.3.1.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\INSTALLER',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\WHEEL',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\REQUESTED',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\REQUESTED',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\METADATA',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\top_level.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\top_level.txt',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\WHEEL',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\INSTALLER',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\RECORD',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\INSTALLER',
+   'DATA'),
+  ('werkzeug-3.1.5.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\werkzeug-3.1.5.dist-info\\METADATA',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\WHEEL',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\LICENSE.md',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\LICENSE.md',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\METADATA',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\RECORD',
+   'DATA'),
+  ('click-8.3.1.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\METADATA',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\RECORD',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\licenses\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\RECORD',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\RECORD',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\INSTALLER',
+   'DATA'),
+  ('click-8.3.1.dist-info\\WHEEL',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\WHEEL',
+   'DATA'),
+  ('flask-3.1.2.dist-info\\INSTALLER',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\flask-3.1.2.dist-info\\INSTALLER',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\METADATA',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pyreadline3-3.5.4.dist-info\\METADATA',
+   'DATA'),
+  ('markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\markupsafe-3.0.3.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('click-8.3.1.dist-info\\licenses\\LICENSE.txt',
+   'C:\\Users\\WEB DIGITAL '
+   '6\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\click-8.3.1.dist-info\\licenses\\LICENSE.txt',
    'DATA'),
   ('base_library.zip',
    'C:\\OutreachOS\\bakend\\build\\OutreachOS\\base_library.zip',

@@ -1,4 +1,5 @@
 import os
+import sys
 import sqlite3
 import smtplib
 import random
@@ -14,7 +15,10 @@ EMAIL             = os.environ.get("SENDER_EMAIL",      "deya5579@gmail.com")
 PASSWORD          = os.environ.get("SENDER_PASSWORD",   "bwto rsis pzaw osnp")
 TRACKING_BASE_URL = os.environ.get("TRACKING_BASE_URL", "https://emailing-automation-production.up.railway.app")
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
+if getattr(sys, 'frozen', False):
+    DB_PATH = os.path.join(os.path.dirname(sys.executable), "outreachos.db")
+else:
+    DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 
 # ─────────────────────────────────────────
 # SUBJECTS

@@ -5,11 +5,15 @@ tracker.py — Local SQLite version
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
 import os
+import sys
 import sqlite3
 import threading
 import email_sender
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
+if getattr(sys, 'frozen', False):
+    DB_PATH = os.path.join(os.path.dirname(sys.executable), "outreachos.db")
+else:
+    DB_PATH = os.path.join(os.path.dirname(__file__), "outreachos.db")
 app = Flask(__name__)
 CORS(app)
 

@@ -9,7 +9,7 @@ from flask import send_from_directory
 if getattr(sys, 'frozen', False):
     BASE_DIR = sys._MEIPASS
 else:
-    BASE_DIR = os.path.dirname(__file__)
+    BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")
 
 sys.path.insert(0, BASE_DIR)
 
