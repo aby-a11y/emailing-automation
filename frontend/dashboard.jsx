@@ -55,7 +55,7 @@ function StatCard({ label, value, sub, accent }) {
     </div>
   );
 }
-function AutomationControl({ backendUrl, showToast }) {
+function AutomationControl({ backendUrl, showToast, isRunning, setIsRunning }) { 
   const [running, setRunning] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -718,7 +718,7 @@ export default function App() {
         )}
 
         {/* Tab Content */}
-        {tab === "Overview" && <Overview leads={leads} clicks={clicks} backendUrl={BACKEND_URL} showToast={showToast} isRunning={isRunning}setIsRunning={setIsRunning} fetchData={fetchData} />}
+        {tab === "Overview" && <Overview leads={leads} clicks={clicks} backendUrl={BACKEND_URL} showToast={showToast} isRunning={isRunning} setIsRunning={setIsRunning} fetchData={fetchData} />}
         {tab === "Leads" && (
           <LeadsTable
             leads={leads}
