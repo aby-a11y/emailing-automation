@@ -63,7 +63,7 @@ function AutomationControl({ backendUrl, showToast }) {
     fetch(`${backendUrl}/automation/status`)
       .then(r => r.json())
       .then(d => setRunning(d.running))
-      .catch(() => {});
+      .catch(() => { });
   }, [backendUrl]);
 
   const start = async () => {
@@ -119,7 +119,7 @@ function AutomationControl({ backendUrl, showToast }) {
   );
 }
 
-function Overview({ leads, clicks, backendUrl, showToast }) {
+function Overview({ leads, clicks, backendUrl, showToast, isRunning, setIsRunning }) {
   const replied = leads.filter(l => String(l.replied).toUpperCase() === "TRUE").length;
   const r1 = leads.filter(l => String(l.round1_sent).toUpperCase() === "TRUE").length;
   const f1 = leads.filter(l => String(l.followup1_sent).toUpperCase() === "TRUE").length;
@@ -140,7 +140,7 @@ function Overview({ leads, clicks, backendUrl, showToast }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       {/* Automation Control */}
-      <AutomationControl backendUrl={backendUrl} showToast={showToast} />
+      <AutomationControl backendUrl={backendUrl} showToast={showToast} isRunning={isRunning} setIsRunning={setIsRunning} />
       {/* Stat Cards */}
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
         <StatCard label="Total Leads" value={leads.length} sub="Uploaded via CSV" accent="#00e5a0" />
@@ -399,7 +399,7 @@ function FollowupQueue({ backendUrl, showToast }) {
     fetch(`${backendUrl}/followup-queue`)
       .then(r => r.json())
       .then(d => setQueue(Array.isArray(d) ? d : []))
-      .catch(() => {});
+      .catch(() => { });
   };
 
   useEffect(() => { fetchQueue(); }, []);
@@ -417,7 +417,7 @@ function FollowupQueue({ backendUrl, showToast }) {
   };
 
   const eligible = queue.filter(r => r.eligible);
-  const pending  = queue.filter(r => !r.eligible);
+  const pending = queue.filter(r => !r.eligible);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -534,6 +534,7 @@ function Settings({ trackingUrl, setTrackingUrl }) {
 
 // ─── MAIN APP ───────────────────────────────────────────────────
 export default function App() {
+  const [isRunning, setIsRunning] = useState(false);
   const [tab, setTab] = useState("Overview");
   const [leads, setLeads] = useState([]);
   const [clicks, setClicks] = useState([]);
@@ -542,16 +543,16 @@ export default function App() {
   const [toast, setToast] = useState(null);
   const fileRef = useRef();
   useEffect(() => {
-  fetch(`${BACKEND_URL}/leads`)
-    .then(r => r.json())
-    .then(d => setLeads(Array.isArray(d) ? d : []))
-    .catch(() => {});
+    fetch(`${BACKEND_URL}/leads`)
+      .then(r => r.json())
+      .then(d => setLeads(Array.isArray(d) ? d : []))
+      .catch(() => { });
 
-  fetch(`${BACKEND_URL}/clicks`)
-    .then(r => r.json())
-    .then(d => setClicks(Array.isArray(d) ? d : []))
-    .catch(() => {});
-}, []);
+    fetch(`${BACKEND_URL}/clicks`)
+      .then(r => r.json())
+      .then(d => setClicks(Array.isArray(d) ? d : []))
+      .catch(() => { });
+  }, []);
 
   const showToast = (msg, color = "#00e5a0") => {
     setToast({ msg, color });
@@ -579,7 +580,7 @@ export default function App() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ leads: rows }),
-        }).catch(() => {});
+        }).catch(() => { });
         showToast(`✓ ${rows.length} leads loaded & saved`);
         setTab("Leads");
       },
@@ -602,13 +603,13 @@ export default function App() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, replied: newVal }),
-    }).catch(() => {});
+    }).catch(() => { });
   };
 
   const exportCSV = () => {
     if (!leads.length) return showToast("No leads to export", "#f5a623");
-    const headers = ["Name","Email","replied","round1_sent","round1_date","followup1_sent","followup1_date","followup2_sent","followup2_date"];
-    const rows = leads.map(l => [l.name,l.email,l.replied,l.round1_sent,l.round1_date,l.followup1_sent,l.followup1_date,l.followup2_sent,l.followup2_date]);
+    const headers = ["Name", "Email", "replied", "round1_sent", "round1_date", "followup1_sent", "followup1_date", "followup2_sent", "followup2_date"];
+    const rows = leads.map(l => [l.name, l.email, l.replied, l.round1_sent, l.round1_date, l.followup1_sent, l.followup1_date, l.followup2_sent, l.followup2_date]);
     const csv = [headers, ...rows].map(r => r.join(",")).join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
@@ -717,13 +718,13 @@ export default function App() {
         )}
 
         {/* Tab Content */}
-        {tab === "Overview" && <Overview leads={leads} clicks={clicks} backendUrl={BACKEND_URL} showToast={showToast} />}
+        {tab === "Overview" && <Overview leads={leads} clicks={clicks} backendUrl={BACKEND_URL} showToast={showToast} isRunning={isRunning}setIsRunning={setIsRunning} fetchData={fetchData} />}
         {tab === "Leads" && (
           <LeadsTable
             leads={leads}
             onToggleReply={handleToggleReply}
             onClearLeads={() => {
-              fetch(`${BACKEND_URL}/leads/clear`, { method: "POST" }).catch(() => {});
+              fetch(`${BACKEND_URL}/leads/clear`, { method: "POST" }).catch(() => { });
               setLeads([]);
               showToast("Leads cleared");
             }}

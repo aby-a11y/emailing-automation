@@ -425,7 +425,7 @@ def run(stop_flag=None):
 
 def run_single_followup(target_email, stop_flag=None):
     """Sirf ek specific lead ka followup bhejo"""
-    leads = load_leads()
+    leads = load_status()
     today = datetime.today()
     server = connect_server()
 
