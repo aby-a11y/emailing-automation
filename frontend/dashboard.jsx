@@ -404,18 +404,21 @@ function FollowupQueue({ backendUrl, showToast }) {
 
   useEffect(() => { fetchQueue(); }, []);
 
-  const sendFollowup = async (email) => {
+ const sendFollowup = async (email) => {
     setSending(prev => ({ ...prev, [email]: true }));
     try {
-      await fetch(`${backendUrl}/run-emails`, { method: "POST" });
-      showToast("Follow-up started!", "#00e5a0");
-      setTimeout(fetchQueue, 3000);
+      await fetch(`${backendUrl}/send-followup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      showToast("Follow-up sent!", "#00e5a0");
+      setTimeout(fetchQueue, 5000);
     } catch {
       showToast("Failed", "#e05c5c");
     }
     setSending(prev => ({ ...prev, [email]: false }));
-  };
-
+};
   const eligible = queue.filter(r => r.eligible);
   const pending = queue.filter(r => !r.eligible);
 
@@ -425,7 +428,18 @@ function FollowupQueue({ backendUrl, showToast }) {
         <div style={{ color: "#888", fontSize: 11, letterSpacing: 2, textTransform: "uppercase" }}>
           Follow-up Queue — {eligible.length} eligible
         </div>
-        <button onClick={() => { fetch(`${backendUrl}/run-emails`, { method: "POST" }); showToast("Bulk follow-ups started!", "#00e5a0"); setTimeout(fetchQueue, 3000); }} style={{
+        <button onClick={async () => {
+  for (const lead of eligible) {
+    await fetch(`${backendUrl}/send-followup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: lead.email })
+    });
+    await new Promise(r => setTimeout(r, 2000));
+  }
+  showToast(`${eligible.length} follow-ups started!`, "#00e5a0");
+  setTimeout(fetchQueue, 5000);
+}} style={{
           background: "#00e5a0", border: "none", color: "#000",
           borderRadius: 7, padding: "8px 18px", cursor: "pointer",
           fontWeight: 700, fontSize: 12, fontFamily: "inherit",
